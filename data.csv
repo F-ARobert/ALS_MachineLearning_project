@@ -552,7 +552,6 @@ ImgID;Number_of_NMJ;Denervation_Complete;Denervation_Non;Denervation_Partielle
 7754EDL-G11;1;0;1;0
 7754EDL-G12;1;0;1;0
 7754EDL-G13;1;0;1;0
-7754EDL-G16;1;0;1;0
 7754EDL-G17;2;1;1;0
 7754EDL-G18;1;0;1;0
 7754EDL-G2;4;0;4;0
@@ -825,7 +824,6 @@ ImgID;Number_of_NMJ;Denervation_Complete;Denervation_Non;Denervation_Partielle
 7945SOL-G9;2;0;2;0
 7964SOL-D1;2;0;2;0
 7964SOL-D10;1;0;1;0
-7964SOL-D11;1;0;1;0
 7964SOL-D13;2;0;2;0
 7964SOL-D15;1;0;1;0
 7964SOL-D17;3;0;3;0
@@ -833,7 +831,6 @@ ImgID;Number_of_NMJ;Denervation_Complete;Denervation_Non;Denervation_Partielle
 7964SOL-D3;1;0;1;0
 7964SOL-D4;1;0;1;0
 7964SOL-D5;2;0;1;1
-7964SOL-D6;1;0;1;0
 7964SOL-D7;2;0;2;0
 7964SOL-D8;2;0;2;0
 7964SOL-D9;1;0;1;0
@@ -882,7 +879,6 @@ ImgID;Number_of_NMJ;Denervation_Complete;Denervation_Non;Denervation_Partielle
 7968SOL-G15;2;0;2;0
 7968SOL-G16;1;0;1;0
 7968SOL-G17;2;0;2;0
-7968SOL-G18;1;0;1;0
 7968SOL-G19;2;0;2;0
 7968SOL-G2;1;0;1;0
 7968SOL-G20;1;0;1;0
@@ -932,7 +928,6 @@ ImgID;Number_of_NMJ;Denervation_Complete;Denervation_Non;Denervation_Partielle
 7978SOL-D14;2;0;1;1
 7978SOL-D15;2;0;2;0
 7978SOL-D16;1;0;1;0
-7978SOL-D17;2;0;2;0
 7978SOL-D2;1;0;1;0
 7978SOL-D20;3;0;3;0
 7978SOL-D21;1;0;1;0
@@ -1004,11 +999,9 @@ ImgID;Number_of_NMJ;Denervation_Complete;Denervation_Non;Denervation_Partielle
 7979SOL-G2;1;0;1;0
 7979SOL-G3;1;0;1;0
 7979SOL-G4;2;0;2;0
-7979SOL-G5;2;0;2;0
 7979SOL-G6;1;0;1;0
 7979SOL-G7;1;0;1;0
 7979SOL-G8;1;0;1;0
-7979SOL-G9;1;0;1;0
 7989SOL-D1;2;1;1;0
 7989SOL-D10;3;1;2;0
 7989SOL-D11;1;0;1;0
