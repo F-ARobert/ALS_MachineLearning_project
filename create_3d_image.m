@@ -1,4 +1,4 @@
-function [img,subimages] = create_3d_image(tiff_object)
+function [img] = create_3d_image(tiff_object)
 %subimages = [512;512;3;74];
 i = 1;
 while 1
