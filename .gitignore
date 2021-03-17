@@ -131,3 +131,4 @@ dmypy.json
 # Directory
 /images
 features.mat
+*Data.mat

@@ -123,4 +123,24 @@ end
 gather(features);
 
 save('features.mat', 'features', '-v7.3');
-%%
+%% Step 9: Devide features into training and test sets
+
+% Add labels and IDs to feature set
+num_ids = uint8([1:1027])';
+Num_NMJ = uint8(data.('Number_of_NMJ'));
+denervation = uint8([data.('Denervation_Complete')...
+    data.('Denervation_Non')...
+    data.('Denervation_Partielle')]);
+feature_w_labels_IDs = [num_ids Num_NMJ denervation features];
+
+% extract 20% of data as test dataset
+cv = cvpartition(size(feature_w_labels_IDs,1),'HoldOut', 0.2);
+idx = cv.test;
+
+% Seperate data into training and data set
+
+dataTrain = feature_w_labels_IDs(~idx,:);
+dataTest = feature_w_labels_IDs(idx,:);
+%% Save training and test data
+save('testData.mat', 'dataTest', '-v7.3');
+save('trainingData.mat', 'dataTrain', '-v7.3');
