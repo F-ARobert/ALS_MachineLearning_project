@@ -14,15 +14,16 @@ ids = data.('ImgID'); % use {} to access strings
 %% Constants
 new_z_dim = 128;
 new_size = [512 512 new_z_dim];
+compress = [128 128 64];
 % Blurring window size and Padding value
 win_blur = 5;
 pad = 'replicate';
-sigma = 0.5;
-i = 1;
-%% Cycle through each image and apply preprocessing
+sigma = 0.1;
 
+%% Cycle through each image and apply preprocessing
 for i = 1:length(ids)
      tic
+     display(i)
     % Load image
     name = ids{i};
     name = strcat('images/', name, '.TIF');
@@ -40,11 +41,11 @@ for i = 1:length(ids)
     % Resize to 512x512x128x3
     % Red
     tic
-    resized_img(:,:,:,1) = imresize3(img(:,:,:,1), [512 512 128], 'linear');
+    resized_img(:,:,:,1) = imresize3(img(:,:,:,1), new_size, 'linear');
     %Green
-    resized_img(:,:,:,2) = imresize3(img(:,:,:,2), [512 512 128], 'linear');
+    resized_img(:,:,:,2) = imresize3(img(:,:,:,2), new_size, 'linear');
     %Blue
-    resized_img(:,:,:,3) = imresize3(img(:,:,:,3), [512 512 128], 'linear');
+    resized_img(:,:,:,3) = imresize3(img(:,:,:,3), new_size, 'linear');
    
     % Blue layer is empty. Can be ignore from now on.
     
@@ -73,8 +74,8 @@ for i = 1:length(ids)
     mask_G = imbinarize(Blurred_img(:,:,:,2), thresh_G);
     
     %% Step 4: Fill in holes
-    mask_R = imfill(mask_R,6, 'holes');
-    mask_G = imfill(mask_G,6, 'holes');
+    mask_R = imfill(mask_R,26, 'holes');
+    mask_G = imfill(mask_G,26, 'holes');
     
     %% Step 5: Remove objects on border
     margin = 10; % Represents roughly 10% of image
@@ -93,8 +94,8 @@ for i = 1:length(ids)
     mask_G = logical(padarray(mask_G, [margin margin margin], 'both'));
     
     %% Step 6: Apply labels to number connected regions
-    [L_R, n_R] = bwlabeln(mask_R, 6);
-    [L_G, n_G] = bwlabeln(mask_G, 6);% Creates many labels
+    [L_R, n_R] = bwlabeln(mask_R, 26);
+    [L_G, n_G] = bwlabeln(mask_G, 26);% Creates many labels
 %     display(n_R)
 %     display(n_G)
     
@@ -103,16 +104,23 @@ for i = 1:length(ids)
     new_img(:,:,:,2) = resized_img(:,:,:,2) .* uint8(mask_G);
     new_img(:,:,:,3) = resized_img(:,:,:,3);
     
+    gather(new_img);
     %% Clear unnecessary variables
     clear Blurred_img resized_img croppedImg_G croppedImg_R...
         L_G L_R mask_G mask_R;
-    toc
-    %% Step 8: Linearize image
-    tic
-    vector_image = [];
-    vector_image = tall(vector_image)
-    vector_image = reshape(new_img, 1, []);
     
+    %% Step 8: Compress and Linearize image
+    compress_img(:,:,:,1) = imresize3(new_img(:,:,:,1), compress, 'linear');
+    compress_img(:,:,:,2) = imresize3(new_img(:,:,:,2), compress, 'linear');
+    compress_img(:,:,:,3) = imresize3(new_img(:,:,:,3), compress, 'linear');
+    
+    % Drop blue channel
+    resized_compress_img = reshape(compress_img, 1, []);
+    features(i,:) = resized_compress_img;
     toc
 end
+
+gather(features);
+
+save('features.mat', 'features', '-v7.3');
 %%
