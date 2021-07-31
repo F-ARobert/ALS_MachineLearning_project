@@ -1,1 +1,11 @@
 # SYS800_Project
+
+## Project overview
+Amyotrophic lateral sclerosis (ALS) is a rare neurodegenerative disease. One of the routine operation researchers must do while investigating ALS’s effect on neuromuscular junction is to analyse the alignment of the junctions and the neuron of affected murine tissue under fluorescence microscopy. This is a tedious task as each image must be analyzed visually in the x, y and z axis and junctions aren’t always easy to interpret. The objective of this project is to automate these analyses.
+
+A laboratory studying ALS has given me access to their image database. However, the data available is very raw, as it was not intended for machine learning uses when is was collected. One of the challenges with the images is the variable number of junctions, or objects, present in each image. This number typically varies from 1 to 3 objects per image and each junction is on a different fiber with its own orientation in space. Furthermore, each junction can be assigned a different diagnostic within the same image. Each object must first be identified as a separate entity before it can be analyzed. The first step to undertake in this project is to identify and seperate entities within each images. This code attempts to do that, with mixed results.
+
+Each image is first subjected to a series of denoising and contrast enhancing treatement before being subjected to machine learning models to attempt to count the number of neuromuscular junctions present. Two ML approches are attempted. The first is a Random Forest learning model, and the second is transfer learning from a pretrained neural network. Each method displayed an accuracy of approximately 70%, highlighting the importance of developping a better image treatment protocol.
+
+## The next steps
+My next goal is to export this code from Mathlab to Python in order to make it more accessible. Once that is done, I wish to improve the image processing protocol by including a Hough transform to seperate artefacts, which are roundish in shape, from neuromuscular junctions, which are larger and irregularly shaped. Furthermore, I wish to improve model accuracy by using ensemble learning techniques to average out individual model predictions towards a more accurate prediction.
